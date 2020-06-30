@@ -53,6 +53,6 @@ public class MutanteController {
 			}
 		});
 		
-		return "";
+		return "Finished";
 	}
 }

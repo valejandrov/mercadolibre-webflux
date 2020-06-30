@@ -28,12 +28,12 @@ public class MainService {
 		JSONObject jsonObject = (JSONObject) jsonParser.parse(dna);
 		JSONArray jsonArray = (JSONArray) jsonObject.get("dna");
 
-		String[] stringsArray = new String[jsonArray.size()];
+		String[] dnaArray = new String[jsonArray.size()];
 		for (int i = 0; i < jsonArray.size(); i++) {
-			stringsArray[i] = (String) jsonArray.get(i);
+			dnaArray[i] = (String) jsonArray.get(i);
 		}
 
-		Mono<Boolean> respuesta = DetectorService.isMutant(stringsArray);
+		Mono<Boolean> respuesta = DetectorService.isMutant(dnaArray);
 		
 		respuesta.subscribe(isMutant -> {
 			if(isMutant) {
