@@ -15,6 +15,7 @@ import com.valejandrov.webflux.app.entity.Mutant;
 import com.valejandrov.webflux.app.service.IAdnVerificadosService;
 
 import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.sql.Timestamp;
 
@@ -41,9 +42,11 @@ public class MutanteController {
 
 	@PostMapping(value = "/mutante", consumes = "application/json", produces = "application/json")
 	String createPerson(@RequestBody String dna,ServerHttpResponse response) throws Exception {
+		System.out.println();
+		System.out.println();
 		System.out.println("Thread Count: " + Thread.activeCount());
-		
-		Mono<Boolean> respuesta = mainService.start(dna);
+		long startTime = System.currentTimeMillis();
+		Mono<Boolean> respuesta = mainService.start(dna).publishOn(Schedulers.boundedElastic());
 		
 		respuesta.subscribe(isMutant -> {
 			if(isMutant) {
@@ -52,7 +55,8 @@ public class MutanteController {
 				response.setStatusCode(HttpStatus.FORBIDDEN);
 			}
 		});
-		
+		long endTime = System.currentTimeMillis() - startTime;
+		System.out.println(endTime);
 		return "Finished";
 	}
 }

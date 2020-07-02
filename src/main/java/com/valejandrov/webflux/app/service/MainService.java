@@ -34,7 +34,7 @@ public class MainService {
 		}
 
 		Mono<Boolean> respuesta = DetectorService.isMutant(dnaArray);
-		
+		/*
 		respuesta.subscribe(isMutant -> {
 			if(isMutant) {
 				try {
@@ -48,6 +48,7 @@ public class MainService {
 				}		
 			}
 		});
+		*/
 		return respuesta;		
 	}
 
