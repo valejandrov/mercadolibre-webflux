@@ -21,8 +21,8 @@ En caso de verificar un mutante, debería devolver un HTTP 200-OK, en caso contr
 3. Anexar una base de datos, la cual guarde los ADN’s verificados con la API. Solo 1 registro por ADN. Exponer un servicio extra “/stats” que devuelva un Json con las estadísticas de las verificaciones de ADN: {“count_mutant_dna”:40, “count_human_dna”:100: “ratio”:0.4}
 
 **Observaciones**
--Tener en cuenta que la API puede recibir fluctuaciones agresivas de tráfico (Entre 100 y 1 millón de peticiones por segundo).
--Test-Automáticos, Code coverage > 80%
+- Tener en cuenta que la API puede recibir fluctuaciones agresivas de tráfico (Entre 100 y 1 millón de peticiones por segundo).
+- Test-Automáticos, Code coverage > 80%
 
 
 ## Instrucciones de uso
@@ -34,22 +34,23 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
 **Servicios**
 
 - Detección de mutante
-    Request:
+   - Request:
         ```
         POST: 
         ```
-    Response:
+   - Response:
         ```
         200 OK          --> Es mutante
+        
         403 FORBIDDEN   --> Es humano
         ```
         
 - Estadística
-    Request:
+   - Request:
         ```
         GET: 
         ```
-    Response:
+   - Response:
         ```
         {
             count_mutant_dna: 40,
