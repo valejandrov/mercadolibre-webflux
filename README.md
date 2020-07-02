@@ -44,6 +44,10 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
         
         403 FORBIDDEN   --> Es humano
         ```
+   **Ejemplo de uso**
+   
+   Utilizando la herramienta Postman, como se muestra a continuación: 
+        
         
 - Estadística
    - Request:
@@ -58,3 +62,6 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
             ratio: 0.4
         }
         ```    
+   **Ejemplo de uso**
+   
+   Utilizando la herramienta Postman, como se muestra a continuación: 
