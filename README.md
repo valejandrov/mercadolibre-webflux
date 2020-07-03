@@ -65,3 +65,5 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
    **Ejemplo de uso**
    
    Utilizando la herramienta Postman, como se muestra a continuación: 
+   
+   ![alt text](https://github.com/valejandrov/mercadolibre-webflux/blob/master/images/postmanget.jpg?raw=true)
