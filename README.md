@@ -36,7 +36,7 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
 - Detección de mutante
    - Request:
         ```
-        POST: 
+        POST: https://gcp-spring-281323.ue.r.appspot.com/mutante
         ```
    - Response:
         ```
@@ -46,13 +46,15 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
         ```
    **Ejemplo de uso**
    
-   Utilizando la herramienta Postman, como se muestra a continuación: 
+   Utilizando la herramienta Postman, como se muestra a continuación (seguir los pasos enumerados): 
         
+![alt text](https://github.com/valejandrov/mercadolibre-webflux/blob/master/images/postmanpostpasos.jpg?raw=true)
+
         
 - Estadística
    - Request:
         ```
-        GET: 
+        GET: https://gcp-spring-281323.ue.r.appspot.com/stats
         ```
    - Response:
         ```
@@ -64,6 +66,6 @@ URL: https://gcp-spring-281323.ue.r.appspot.com
         ```    
    **Ejemplo de uso**
    
-   Utilizando la herramienta Postman, como se muestra a continuación: 
+   Utilizando la herramienta Postman, como se muestra a continuación (seguir los pasos enumerados): 
    
    ![alt text](https://github.com/valejandrov/mercadolibre-webflux/blob/master/images/postmanget.jpg?raw=true)
