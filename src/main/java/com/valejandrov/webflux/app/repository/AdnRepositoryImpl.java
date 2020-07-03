@@ -1,6 +1,7 @@
 package com.valejandrov.webflux.app.repository;
 
-import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.concurrent.ExecutionException;
 
 import org.json.simple.JSONObject;
@@ -42,12 +43,19 @@ public class AdnRepositoryImpl implements IAdnRepository {
 		Estadistica est = documentSnapshotApiFuture.get().toObject(Estadistica.class);
 		System.out.println("Humanos: "+est.getHumanos()+" , Mutantes:"+est.getMutantes());
 		
-		float ratio;
-		ratio = est.getMutantes()/est.getHumanos();
+		int humanos = est.getHumanos();
+		int mutantes = est.getMutantes();
+		double ratio;
+		ratio = (mutantes*1.0)/humanos;
+		System.out.println(ratio);
+				
+		NumberFormat nf_out = NumberFormat.getNumberInstance(Locale.UK);
+		nf_out.setMaximumFractionDigits(2);
+		String output = nf_out.format(ratio);
 		
 		String respuesta = "{\"count_mutant_dna\": "+String.valueOf(est.getMutantes())+", \"count_human_dna\": "+ String.valueOf(est.getHumanos())
-								+", \"ratio\": "+new DecimalFormat("#.##").format(ratio)+"}";
-		
+								+", \"ratio\": "+output+"}";
+		System.out.println(respuesta);
 		JSONParser parser = new JSONParser();
 		JSONObject json = new JSONObject();
 		try {
