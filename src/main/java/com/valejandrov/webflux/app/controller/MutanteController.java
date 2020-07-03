@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.valejandrov.webflux.app.service.MainService;
 import com.valejandrov.webflux.app.entity.Mutant;
-import com.valejandrov.webflux.app.service.IAdnVerificadosService;
+import com.valejandrov.webflux.app.service.IAdnService;
 
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
@@ -34,20 +34,12 @@ public class MutanteController {
 
 	@Autowired
 	private MainService mainService;
-	
-	@GetMapping("/stats")
-	public String estadistica() {
-		return "todo";
-	}
 
 	@PostMapping(value = "/mutante", consumes = "application/json", produces = "application/json")
 	String createPerson(@RequestBody String dna,ServerHttpResponse response) throws Exception {
-		System.out.println();
-		System.out.println();
+
 		System.out.println("Thread Count: " + Thread.activeCount());
-		long startTime = System.currentTimeMillis();
-		Mono<Boolean> respuesta = mainService.start(dna).publishOn(Schedulers.boundedElastic());
-		
+		Mono<Boolean> respuesta = mainService.start(dna);
 		respuesta.subscribe(isMutant -> {
 			if(isMutant) {
 				response.setStatusCode(HttpStatus.OK);
@@ -55,8 +47,6 @@ public class MutanteController {
 				response.setStatusCode(HttpStatus.FORBIDDEN);
 			}
 		});
-		long endTime = System.currentTimeMillis() - startTime;
-		System.out.println(endTime);
 		return "Finished";
 	}
 }
