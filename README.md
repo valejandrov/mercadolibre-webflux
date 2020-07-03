@@ -1,4 +1,4 @@
-# Examen Mercadolibre
+# Challenge de Mercadolibre
 
 ## Objetivo
 
