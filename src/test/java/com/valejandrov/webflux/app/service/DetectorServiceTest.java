@@ -1,11 +1,8 @@
 package com.valejandrov.webflux.app.service;
 
-import static org.junit.Assert.assertEquals;
-
 import java.util.ArrayList;
 
 import org.junit.Test;
-import org.mockito.InjectMocks;
 
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
@@ -15,16 +12,6 @@ public class DetectorServiceTest {
 	private final ArrayList<TestCase> humanCases;
 	private final ArrayList<TestCase> mutantCases;
 
-	private String[] dnaMutante1 = new String[] { "ATGCGA", "CAGTGC", "TTATGG", "AGAAGG", "CCCCTA", "TCGCTG" };
-
-	private String[] dnaMutante2 = new String[] { "GTGCGA", "AAAAGC", "TCATGG", "CGATAG", "CCCTTA", "TTTTCG" };
-
-	private String[] dnaHumano1 = new String[] { "GTGC", "CACT", "TCCT", "TCGC" };
-
-	private String[] dnaHumano2 = new String[] { "GTGC", "CCCC", "TCCT", "TCGC" };
-
-	
-	
 	public DetectorServiceTest() {
 		humanCases = new ArrayList<>();
 		mutantCases = new ArrayList<>();

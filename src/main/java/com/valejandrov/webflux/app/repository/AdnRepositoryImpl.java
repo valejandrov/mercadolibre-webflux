@@ -37,34 +37,11 @@ public class AdnRepositoryImpl implements IAdnRepository {
 				    .update("humanos", FieldValue.increment(1));
 	}
 
-	public JSONObject getSummary() throws InterruptedException, ExecutionException {
-		
+	public Estadistica getEstadistica() throws InterruptedException, ExecutionException {
 		ApiFuture<DocumentSnapshot> documentSnapshotApiFuture = this.firestore.collection("estadistica").document("resumen").get();
 		Estadistica est = documentSnapshotApiFuture.get().toObject(Estadistica.class);
 		System.out.println("Humanos: "+est.getHumanos()+" , Mutantes:"+est.getMutantes());
-		
-		int humanos = est.getHumanos();
-		int mutantes = est.getMutantes();
-		double ratio;
-		ratio = (mutantes*1.0)/humanos;
-		System.out.println(ratio);
-				
-		NumberFormat nf_out = NumberFormat.getNumberInstance(Locale.UK);
-		nf_out.setMaximumFractionDigits(2);
-		String output = nf_out.format(ratio);
-		
-		String respuesta = "{\"count_mutant_dna\": "+String.valueOf(est.getMutantes())+", \"count_human_dna\": "+ String.valueOf(est.getHumanos())
-								+", \"ratio\": "+output+"}";
-		System.out.println(respuesta);
-		JSONParser parser = new JSONParser();
-		JSONObject json = new JSONObject();
-		try {
-			json = (JSONObject) parser.parse(respuesta);
-		} catch (ParseException e) {
-			e.printStackTrace();
-		}
-		
-		return json;
+		return est;
 	}
 
 }
