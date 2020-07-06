@@ -11,46 +11,30 @@ public class DetectorService {
 
 	public static Mono<Boolean> isMutant(String[] adn) {
 		System.out.println( Thread.currentThread().getName() );
-		
 		int contadorSecuenciaMutante = 0;
-
 		contadorSecuenciaMutante += horizontalDetection(adn, contadorSecuenciaMutante);
-		//System.out.println("Contador de mutantes[Horizontal]: " + contadorSecuenciaMutante);
-		
 		if (contadorSecuenciaMutante >= 2) {
 			return Mono.just(true);
 		}
-
 		contadorSecuenciaMutante = verticalDetection(adn, contadorSecuenciaMutante);
-		//System.out.println("Contador de mutantes[Vertical]: " + contadorSecuenciaMutante);
-		
 		if (contadorSecuenciaMutante >= 2) {
 			return Mono.just(true);
 		}
-		
 		contadorSecuenciaMutante = mainDiagonalDetection(adn, contadorSecuenciaMutante);
-		//System.out.println("Contador de mutantes[Diagonal-Principal]: " + contadorSecuenciaMutante);
-		
 		if (contadorSecuenciaMutante >= 2) {
 			return Mono.just(true);
 		}
-
 		contadorSecuenciaMutante = secondaryDiagonalDetection(adn, contadorSecuenciaMutante);
-		//System.out.println("Contador de mutantes[Diagonal-Secundaria]: " + contadorSecuenciaMutante);
-		
 		if (contadorSecuenciaMutante >= 2) {
 			return Mono.just(true);
 		} else {
 			return Mono.just(false);
 		}
-
 	}
 
-	private static int horizontalDetection(String[] adn, int contadorSecuenciaMutante) {
-
+	public static int horizontalDetection(String[] adn, int contadorSecuenciaMutante) {
 		int fila = 0;
 		while (fila < adn.length && contadorSecuenciaMutante < 2) {
-
 			if (adn[fila].contains("CCCC")) {
 				contadorSecuenciaMutante++;
 			}
@@ -74,9 +58,7 @@ public class DetectorService {
 		int y = 0;
 		int igualdades = 0;
 		boolean continuar = true;
-
 		while (x < adn.length && contadorSecuenciaMutante < 2) {
-
 			while (contadorSecuenciaMutante < 2 && ((adn.length - y - 1) >= (3 - igualdades)) && continuar) {
 				if (adn[y].charAt(x) == adn[y + 1].charAt(x)) {
 					igualdades++;
@@ -99,16 +81,12 @@ public class DetectorService {
 	}
 
 	private static int mainDiagonalDetection(String[] adn, int contadorSecuenciaMutante) {
-
 		int x = 0;
 		int y = 0;
 		final int N = adn.length;
-
 		int limit = N - 4;
-
 		int igualdades = 0;
 		boolean continuar = true;
-				
 		//System.out.println("Recorriendo en y");
 		for (int fila = limit; fila >= 0; fila--) {
 			y = fila;
@@ -133,10 +111,8 @@ public class DetectorService {
 		}
 		
 		//System.out.println("Contador de mutantes[Dentro de Diagonal]: " + contadorSecuenciaMutante);
-
 		int x0 = 1;
 		y = 0;
-
 		//System.out.println("Recorriendo en x");
 		for (int col = x0; col <= limit; col++) {
 			x = col;
@@ -160,7 +136,6 @@ public class DetectorService {
 			continuar = true;
 		}
 		//System.out.println("Contador de mutantes[Dentro de Diagonal despues de x]: " + contadorSecuenciaMutante);
-
 		return contadorSecuenciaMutante;
 	}
 	
@@ -170,12 +145,9 @@ public class DetectorService {
 		final int N = adn.length;
 		int x = N - 1;
 		int y = 0;
-
 		int limit = N - 4;
-
 		int igualdades = 0;
 		boolean continuar = true;
-		
 		//System.out.println("Recorriendo en y");
 		for (int fila = limit; fila >= 0; fila--) {
 			y = fila;
@@ -200,10 +172,8 @@ public class DetectorService {
 		}
 		
 		//System.out.println("Contador de mutantes[Dentro de Diagonal]: " + contadorSecuenciaMutante);
-
 		int x0 = N - 2;
 		y = 0;
-
 		//System.out.println("Recorriendo en x");
 		for (int col = x0; col >= 0; col--) {
 			x = col;
@@ -227,7 +197,6 @@ public class DetectorService {
 			continuar = true;
 		}
 		//System.out.println("Contador de mutantes[Dentro de Diagonal despues de x]: " + contadorSecuenciaMutante);
-
 		return contadorSecuenciaMutante;
 	}
 	

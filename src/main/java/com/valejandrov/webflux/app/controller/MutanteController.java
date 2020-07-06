@@ -29,14 +29,14 @@ import org.slf4j.LoggerFactory;
 @RestController
 @RequestMapping("/")
 public class MutanteController {
-	
 	private final Logger log = LoggerFactory.getLogger(this.getClass());
-
+	public MutanteController() {
+		super();
+	}
 	@Autowired
 	private MainService mainService;
-
 	@PostMapping(value = "/mutante", consumes = "application/json", produces = "application/json")
-	String createPerson(@RequestBody String dna,ServerHttpResponse response) throws Exception {
+	String mutante(@RequestBody String dna,ServerHttpResponse response) throws Exception {
 
 		System.out.println("Thread Count: " + Thread.activeCount());
 		Mono<Boolean> respuesta = mainService.start(dna);
