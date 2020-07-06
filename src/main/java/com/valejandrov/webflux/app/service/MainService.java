@@ -25,7 +25,6 @@ public class MainService {
 		super();
 	}
 
-
 	public Mono<Boolean> start(String dna) throws ParseException{
 
 		JSONParser jsonParser = new JSONParser();
