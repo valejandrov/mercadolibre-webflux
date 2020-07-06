@@ -1,27 +1,35 @@
 package com.valejandrov.webflux.app.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.when;
+
+import java.util.concurrent.ExecutionException;
+
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import com.valejandrov.webflux.app.entity.Estadistica;
+import com.valejandrov.webflux.app.repository.AdnRepositoryImpl;
 
-import com.valejandrov.webflux.app.repository.IAdnRepository;
 
-@SpringBootTest
+
+@RunWith(MockitoJUnitRunner.class)
 public class AdnServiceImplTest {
-
-	// Create a mock of Resource to change its behaviour for testing
-	@MockBean
-	private IAdnRepository adnRepository;
 
 	@InjectMocks
     private AdnServiceImpl service;
 
-	/*
-		
+	@Mock
+	private AdnRepositoryImpl adnServiceRepository;
+	
 	@Test
 	public void statTest() throws InterruptedException, ExecutionException, ParseException {
-
 		Estadistica est = new Estadistica();
 		est.setHumanos(10);
 		est.setMutantes(5);
@@ -32,26 +40,7 @@ public class AdnServiceImplTest {
         JSONParser parser = new JSONParser();
         json = (JSONObject) parser.parse(respuesta);
 		
-		IAdnRepository adnRepository = mock(IAdnRepository.class);
-		when(adnRepository.getEstadistica()).thenReturn(est);
-		
-		System.out.println(adnRepository.getEstadistica().getHumanos());
-		
-		assertEquals(json, service.stats());
+		when(adnServiceRepository.getEstadistica()).thenReturn(est);
+		assertEquals(json,service.stats());
 	}
-	*/
 }
-
-		/*
-		
-		AdnServiceImpl adnService = new AdnServiceImpl();
-        
-        JSONObject json = new JSONObject();
-        String respuesta = "{\"count_mutant_dna\": 5, \"count_human_dna\": 10, \"ratio\": 0.5}";
-        JSONParser parser = new JSONParser();
-        json = (JSONObject) parser.parse(respuesta);
-		
-		assertEquals(json, adnService.stats());
-		
-		*/
-
